@@ -1,28 +1,21 @@
 # TO-DO: Implement a recursive implementation of binary search
 def binary_search(arr, target, start, end):
     # Your code here
+    if len(arr) == 0:
+        return -1
 
     middle_index = (start + end) // 2
     val_at_middle = arr[middle_index]
-    print('middle index', middle_index)
-    print('middle val', val_at_middle)
-    print('Target', target)
-    print('start', start)
-    print('end', end)
-    if val_at_middle == target:
-        print("Target value found at index:", middle_index)
-        return middle_index
 
-    if val_at_middle > target:
+    if val_at_middle == target:
+        return middle_index
+    elif val_at_middle > target:
         new_end = middle_index - 1
-        binary_search(arr, target, start, new_end)
-        print('new end adjusted', new_end)
+        return binary_search(arr, target, start, new_end)
     elif val_at_middle < target:
         new_start = middle_index + 1
-        binary_search(arr, target, new_start, end)
-        print('new start adjusted', new_start)
+        return binary_search(arr, target, new_start, end)
     else:
-        # print('terminated')
         return -1
 
 
@@ -37,5 +30,5 @@ def agnostic_binary_search(arr, target):
     pass
 
 
-arr1 = [-9, -8, -6, -4, -3, -2, 0, 1, 2, 3, 5, 7, 8, 9]
-binary_search(arr1, -8, 0, len(arr1)-1)
+# arr1 = [-9, -8, -6, -4, -3, -2, 0, 1, 2, 3, 5, 7, 8, 9]
+# print(binary_search(arr1, -8, 0, len(arr1)-1))
